@@ -2,24 +2,24 @@ package com.company;
 
 public class MyLinkedList<T> {
 
-    private Node _first;
-    private int _size;
+    private Node first;
+    private int size;
 
     public MyLinkedList() {
-        _first = null;
-        _size = 0;
+        first = null;
+        size = 0;
     }
 
     public int getSize() {
-        return _size;
+        return size;
     }
 
     public void add(T data) {
-        Node current = _first;
+        Node current = first;
 
         if (current == null) {
-            _first = new Node(data);
-            _size++;
+            first = new Node(data);
+            size++;
             return;
         }
 
@@ -28,7 +28,7 @@ public class MyLinkedList<T> {
         }
 
         current.setNext(new Node(data));
-        _size++;
+        size++;
     }
 
     public void add(T[] array) {
@@ -38,18 +38,18 @@ public class MyLinkedList<T> {
     }
 
     public void remove(T data) {
-        Node current = _first;
+        Node current = first;
         Node next = current.getNext();
 
-        if (_first.getData().equals(data)) {
-            if (_size == 1) {
-                _first.setData(null);
-                _size--;
+        if (first.getData().equals(data)) {
+            if (size == 1) {
+                first.setData(null);
+                size--;
                 return;
             }
-            _first.setData(null);
-            _first = _first.getNext();
-            _size--;
+            first.setData(null);
+            first = first.getNext();
+            size--;
             return;
         }
 
@@ -57,7 +57,7 @@ public class MyLinkedList<T> {
             if (next.getData().equals(data)) {
                 current.setNext(next.getNext());
                 next = null;
-                _size--;
+                size--;
                 return;
             }
             current = next;
@@ -67,8 +67,8 @@ public class MyLinkedList<T> {
 
     public boolean contains(T o) {
         Node<T> p;
-        for(p=_first;p!=null;p=p._next){
-            if(p._data.equals(o)){
+        for(p=first;p!=null;p=p._next){
+            if(p.data.equals(o)){
                 return true;
             }
         }
@@ -76,42 +76,42 @@ public class MyLinkedList<T> {
     }
     @Override
     public String toString() {
-        if(_size == 0) { //list is empty
+        if(size == 0) { //list is empty
             return "";
         }
-        Node current = _first;
-        while (current._next != null) {
-            System.out.print(current._data + "->");
-            current = current._next;
+        Node current = first;
+        while (current.next != null) {
+            System.out.print(current.data + "->");
+            current = current.next;
         }
-        System.out.print(current._data + "\n");
+        System.out.print(current.data + "\n");
         return "";
     }
 
     private class Node<T> {
 
-        private T _data;
-        private Node _next;
+        private T data;
+        private Node next;
 
         public Node(T data) {
-            _data = data;
-            _next = null;
+            data = data;
+            next = null;
         }
 
         public void setData(T data) {
-            _data = data;
+            data = data;
         }
 
         public T getData() {
-            return _data;
+            return data;
         }
 
         public void setNext(Node next) {
-            _next = next;
+            next = next;
         }
 
         public Node getNext() {
-            return _next;
+            return next;
         }
 
     }
